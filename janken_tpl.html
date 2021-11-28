@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>じゃんけん</title>
+</head>
+<body>
+
+  <header>
+    <p>
+      <div class="title">
+        三国志演義ミニゲーム<br>
+      </div>
+      <div>
+      ～時は三国時代　魏・呉・蜀が覇権を争う中で曹操・関羽の戦い～
+      </div>
+    </p>
+  
+  </header>
+
+<!-- ゲージ -->
+
+<div class="damage">曹操のダメージ</div>
+<meter min="0" max="1000" value="1000" id="gage"></meter>        
+
+<!-- イラスト -->
+<ul>
+  <div id="soso">
+    <img src="img/photo.png">
+  </div>
+  <div id="kanu">
+    <img src="img/photo2.PNG">
+  </div>    
+</ul>
+<div id="judgment"></div>
+
+<!-- Form / input / buttonの調整 -->
+  <form>
+    <input type="radio" name="hand" value="0">剣
+    <input type="radio" name="hand" value="1">素手
+    <input type="radio" name="hand" value="2">槍<br>
+    <button type="button" id="gu_btn">曹操の攻撃</button>
+    <button type="button" id="par_btn">？？</button>
+    <button type="button" id="cho_btn">関羽の攻撃</button>
+  </form>
+
+  <!-- 戦のボタンを押すと実行 -->
+  <script>
+  $("#gu_btn").on("click",function(){
+    $("#soso").animate({
+      "marginLeft": "600px"
+    },{
+      'complete':function(){alert('200のダメージ');
+        }  
+      });
+    });  
+
+  $("#cho_btn").on("click",function(){
+    $("#kanu").animate({
+      "marginRight": "600px"
+    },{
+      'complete':function(){alert('150のダメージ');
+        }
+      });
+    });
+
+    $("#par_btn").on("click",function(){
+    let comp = Math.floor(Math.random()*3+1 );
+  if(comp == 1){
+    $("#soso").animate({zIndex:1},{
+      duration:1000,
+      step:function(now){
+        $(this).css({transform:'rotate('+ (now * 1080) + 'deg)'});
+      }
+    },{
+      'complete':function(){alert('300のダメージ');
+        }  
+      });
+  }else if(comp == 3){
+    $("#kanu").animate({
+      "marginRight": "600px"
+    },{
+      'complete':function(){alert('650のダメージ');
+        }  
+      });
+  }else if(comp == 2){
+      $("#judgment").text("関羽の負け")
+  }
+  });
+
+
+
+
+
+  </script>
+    
+
+
+
+
+
+</body>
+</html>
